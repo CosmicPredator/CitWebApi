@@ -1,0 +1,6 @@
+B:\DotnetApps\CitWebApi\bin\Release\net7.0\win-x64\publish\appsettings.Development.json
+B:\DotnetApps\CitWebApi\bin\Release\net7.0\win-x64\publish\appsettings.json
+B:\DotnetApps\CitWebApi\bin\Release\net7.0\win-x64\publish\CitWebApi.pdb
+B:\DotnetApps\CitWebApi\bin\Release\net7.0\win-x64\publish\aspnetcorev2_inprocess.dll
+B:\DotnetApps\CitWebApi\bin\Release\net7.0\win-x64\publish\e_sqlite3.dll
+B:\DotnetApps\CitWebApi\bin\Release\net7.0\win-x64\publish\CitWebApi.exe
