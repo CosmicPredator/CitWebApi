@@ -17,16 +17,4 @@ public class HomeController : Controller
             }
         );
     }
-
-    [HttpPost]
-    public IActionResult PostHome()
-    {
-        return Ok(
-            new 
-            {
-                Status = Response.StatusCode,
-                Message = "Welcome to the API"
-            }
-        );
-    }
 }

@@ -53,6 +53,21 @@ public class StudentEntryController : ControllerBase
 
         Db.StudentEntries.Add(entry);
         await Db.SaveChangesAsync();
+        
+        if (Db.StudentEntries.Count(x => x.Student!.CardId == cardId
+                                         && x.Date.Date == DateTime.Now.Date) <= 1)
+        {
+            var newAttendance = new StudentAttendanceModel()
+            {
+                Student = Db.Students.First(x => x.CardId == cardId),
+                Date = DateTime.Now,
+                isOnDuty = false,
+                isResting = false
+            };
+
+            Db.StudentAttendances.Add(newAttendance);
+            await Db.SaveChangesAsync();
+        }
 
         return Ok(
             new

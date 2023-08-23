@@ -31,9 +31,7 @@ public class LoginController : ControllerBase
             );
         }
 
-        var student = Db.Staffs.Where(
-            x => x.Email == model.Email
-        ).First();
+        var student = Db.Staffs.First(x => x.Email == model.Email);
 
         if (Encryptor.verifyPasswordHash(model.Password!, student.PasswordHash!, student.PasswordSalt!))
         {

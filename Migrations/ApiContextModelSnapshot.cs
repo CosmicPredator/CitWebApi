@@ -17,6 +17,28 @@ namespace CitWebApi.Migrations
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "7.0.10");
 
+            modelBuilder.Entity("CitWebApi.DB.AbsentReasonModel", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime>("Date")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Reason")
+                        .HasColumnType("TEXT");
+
+                    b.Property<Guid?>("StudentId")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("StudentId");
+
+                    b.ToTable("AbsentReasons");
+                });
+
             modelBuilder.Entity("CitWebApi.DB.StaffModel", b =>
                 {
                     b.Property<Guid>("Id")
@@ -38,6 +60,31 @@ namespace CitWebApi.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Staffs");
+                });
+
+            modelBuilder.Entity("CitWebApi.DB.StudentAttendanceModel", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime>("Date")
+                        .HasColumnType("TEXT");
+
+                    b.Property<Guid>("StudentId")
+                        .HasColumnType("TEXT");
+
+                    b.Property<bool>("isOnDuty")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<bool>("isResting")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("StudentId");
+
+                    b.ToTable("StudentAttendances");
                 });
 
             modelBuilder.Entity("CitWebApi.DB.StudentEntryModel", b =>
@@ -86,6 +133,26 @@ namespace CitWebApi.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Students");
+                });
+
+            modelBuilder.Entity("CitWebApi.DB.AbsentReasonModel", b =>
+                {
+                    b.HasOne("CitWebApi.DB.StudentModel", "Student")
+                        .WithMany()
+                        .HasForeignKey("StudentId");
+
+                    b.Navigation("Student");
+                });
+
+            modelBuilder.Entity("CitWebApi.DB.StudentAttendanceModel", b =>
+                {
+                    b.HasOne("CitWebApi.DB.StudentModel", "Student")
+                        .WithMany()
+                        .HasForeignKey("StudentId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Student");
                 });
 
             modelBuilder.Entity("CitWebApi.DB.StudentEntryModel", b =>

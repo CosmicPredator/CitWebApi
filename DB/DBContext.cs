@@ -16,4 +16,6 @@ public class ApiContext : DbContext
     public DbSet<StaffModel> Staffs { get; set; }
     public DbSet<StudentModel> Students {get; set;}
     public DbSet<StudentEntryModel> StudentEntries {get; set;}
+    public DbSet<StudentAttendanceModel> StudentAttendances { get; set; }
+    public DbSet<AbsentReasonModel> AbsentReasons { get; set; }
 }
