@@ -34,7 +34,12 @@ public class StatsController : ControllerBase
             TotalIns = Db.StudentEntries.Count(x => x.Date.Date == DateTime.Now.Date),
             TotalOuts = Db.StudentEntries.Count(x => x.Date.Date == DateTime.Now.Date &&
                                                      x.OutTime != null),
-            TotalStudents = Db.Students.Count()
+            TotalStudents = Db.Students.Count(),
+            AbsentToday = Db.Students
+                .Where(x => 
+                    !Db.StudentAttendances.Any(
+                        y => y.Student.CardId == x.CardId &&
+                             y.Date.Date == DateTime.Now.Date)).ToList()
         };
         return Ok(new
         {
