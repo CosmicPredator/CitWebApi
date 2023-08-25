@@ -2,7 +2,7 @@
 using CitWebApi.Services;
 using Microsoft.AspNetCore.Mvc;
 
-namespace CitWebApi.Controllers.Models;
+namespace CitWebApi.Controllers;
 
 [ApiController]
 [Route("/stats")]
@@ -39,7 +39,9 @@ public class StatsController : ControllerBase
                 .Where(x => 
                     !Db.StudentAttendances.Any(
                         y => y.Student.CardId == x.CardId &&
-                             y.Date.Date == DateTime.Now.Date)).ToList()
+                             y.Date.Date == DateTime.Now.Date)).ToList().Count,
+            TotalOdStudents = Db.StudentAttendances.Where(x => x.Date.Date == DateTime.Now.Date &&
+                                                               x.isOnDuty == true).ToList().Count
         };
         return Ok(new
         {
