@@ -1,9 +1,11 @@
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CitWebApi.Controllers;
 
 [ApiController]
 [Route("/")]
+[EnableCors("*")]
 public class HomeController : Controller
 {
     [HttpGet]

@@ -25,7 +25,18 @@ builder.Services.AddControllers().AddJsonOptions(options =>
     options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
 });
 
+builder.Services.AddCors(options =>
+{
+    options.AddDefaultPolicy(x =>
+    {
+        x.AllowAnyOrigin()
+            .AllowAnyHeader()
+            .AllowAnyMethod();
+    });
+});
+
 var app = builder.Build();
+app.UseCors();
 
 // Configure the HTTP request pipeline.
 app.UseSwagger();
@@ -43,9 +54,9 @@ Console.WriteLine("""
   | $$ | $$  | $$      | $$$/ \  $$| $$_____| $$  | $$      | $$  | $| $$       | $$  
  /$$$$$| $$  | $$      | $$/   \  $|  $$$$$$| $$$$$$$/      | $$  | $| $$      /$$$$$$
 |______|__/  |__/      |__/     \__/\_______|_______/       |__/  |__|__/     |______/
-                                                                                                                                                                                                                                                 
-                                                                                                                                                 
 Developed by Barani Kumar S - Department of Mechatronics - CIT
+
+
 """);
 
 app.UseAuthorization();
